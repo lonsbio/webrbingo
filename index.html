@@ -73,6 +73,24 @@ ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG
       
       statusEl.textContent = "Installing stringr package...";
       await webR.installPackages(['stringr']);
+
+
+
+      await webR.evalR(`
+      
+              webr::mount(mountpoint = "/bingo", source = "https://github.com/lonsbio/bingowasm/releases/download/v0.0.1/library.data
+");
+
+        .libPaths(c(.libPaths(), "/bingo"));
+        library(bingo);
+        message("Bingo time")
+          `);
+
+      
+      statusEl.textContent = "Installing bingo package...";
+      await webR.installPackages(['stringr']);
+
+
       
       statusEl.textContent = "webR ready.";
       runBtn.disabled = false;
